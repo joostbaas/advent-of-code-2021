@@ -1,7 +1,6 @@
 package day03
 
 import readInput
-import java.util.SortedMap
 
 fun List<String>.transposed(): List<List<Char>> {
     val length = this[0].length
@@ -58,9 +57,9 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("day03/testInput")
+    val testInput = readInput("day04/testInput")
     check(part1(testInput) == 198)
-    val input = readInput("day03/input")
+    val input = readInput("day04/input")
     check(part1(input) == 4103154)
     println(part1(input))
 
