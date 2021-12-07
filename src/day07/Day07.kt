@@ -2,8 +2,10 @@ package day07
 
 import readInput
 import kotlin.math.abs
-import kotlin.system.measureTimeMillis
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTimedValue
 
+@ExperimentalTime
 fun main() {
 
     fun List<String>.parse() = this[0].split(",").map { it.toInt() }
@@ -19,8 +21,8 @@ fun main() {
     fun part1(input: List<String>): Int =
         calculateFuel(input) { pos1, pos2 -> abs(pos1 - pos2) }
 
-    tailrec fun progressiveCost(diff: Int, acc: Int = 0) : Int =
-        when(diff) {
+    tailrec fun progressiveCost(diff: Int, acc: Int = 0): Int =
+        when (diff) {
             0 -> acc
             else -> progressiveCost(diff - 1, acc + diff)
         }
@@ -38,11 +40,10 @@ fun main() {
     println(part2(testInput))
     check(part2(testInput) == 168)
 
-    measureTimeMillis {
-        val part2Answer = part2(input)
-        println(part2Answer)
-        check(part2Answer == 96864235)
-    }.let {
-        println("took ${it} milis")
+    val (part2Answer, duration) = measureTimedValue {
+        part2(input)
     }
+    println(part2Answer)
+    check(part2Answer == 96864235)
+    println("took ${duration.inWholeMilliseconds} milis")
 }
